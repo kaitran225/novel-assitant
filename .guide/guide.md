@@ -126,52 +126,57 @@ Purpose: Load all user-written files into the AI’s knowledge base.
 Data Types: .txt, .md, .docx, .pdf, .scriv, .json for outlines.
 
 Steps:
- - File collector scans a “Story Repository” folder.
- - Extracts text content.
- - Splits large documents into semantic chunks (e.g., 500–1000 words) while keeping chapter/scene boundaries.
- - Tools: A document loader + text splitter.
+
+- File collector scans a “Story Repository” folder.
+- Extracts text content.
+- Splits large documents into semantic chunks (e.g., 500–1000 words) while keeping chapter/scene boundaries.
+- Tools: A document loader + text splitter.
 
 **Layer 2 — Knowledge Index / Memory**
 Purpose: Store and retrieve relevant context from your writing.
 Approach:
- - Convert all chunks into embeddings (vector representation of meaning).
- - Store in a vector database (acts like a searchable “story memory”).
+
+- Convert all chunks into embeddings (vector representation of meaning).
+- Store in a vector database (acts like a searchable “story memory”).
 Why:
- - Lets the AI pull only relevant passages when you ask about a character, location, or plot.
- - Maintains your voice & style consistency.
- - Tools: FAISS, Pinecone, Weaviate, ChromaDB.
+- Lets the AI pull only relevant passages when you ask about a character, location, or plot.
+- Maintains your voice & style consistency.
+- Tools: FAISS, Pinecone, Weaviate, ChromaDB.
 
 **Layer 3 — Reasoning Engine**
 Purpose: The “brain” that decides what to suggest.
 Capabilities:
- - Search memory for related story elements.
- - Understand narrative structure (Setup → Conflict → Resolution).
- - Suggest plotlines that fit your tone & pacing.
- - Optionally: Maintain character arcs, themes, and world rules.
+
+- Search memory for related story elements.
+- Understand narrative structure (Setup → Conflict → Resolution).
+- Suggest plotlines that fit your tone & pacing.
+- Optionally: Maintain character arcs, themes, and world rules.
 Agent Style:
- - Could be a reactive agent (answers on demand) or proactive agent (suggests periodically).
- - Can chain tools: Retrieval → Analysis → Generation.
+- Could be a reactive agent (answers on demand) or proactive agent (suggests periodically).
+- Can chain tools: Retrieval → Analysis → Generation.
 
 **Layer 4 — Generation**
 Purpose: Produce storyline suggestions or continuations.
 Approach:
- - Combine retrieved context from Layer 2 with your request.
- - Use an LLM (large language model) tuned for creative writing.
- - Apply style-preserving prompts (train or fine-tune with your text).
+
+- Combine retrieved context from Layer 2 with your request.
+- Use an LLM (large language model) tuned for creative writing.
+- Apply style-preserving prompts (train or fine-tune with your text).
 Output Types:
- - High-level story arcs.
- - Scene outlines.
- - Alternative endings.
- - Dialogue suggestions.
+- High-level story arcs.
+- Scene outlines.
+- Alternative endings.
+- Dialogue suggestions.
 
 **Layer 5 — Interaction**
 Purpose: How the writer communicates with the agent.
 Modes:
- - Chat interface (ask “What’s a good next twist for Chapter 7?”).
- - In-editor assistant (VSCode, Obsidian, Scrivener plugin).
- - Standalone dashboard for browsing characters, locations, and arcs.
+
+- Chat interface (ask “What’s a good next twist for Chapter 7?”).
+- In-editor assistant (VSCode, Obsidian, Scrivener plugin).
+- Standalone dashboard for browsing characters, locations, and arcs.
 Extra Feature:
- - “Lore Book” view — dynamically generated summaries of characters, locations, and past events.
+- “Lore Book” view — dynamically generated summaries of characters, locations, and past events.
 
 ### 3. Example Workflow
 
@@ -179,9 +184,10 @@ User: Drops all novel files into the “Story Vault” folder.
 Agent: Scans, chunks, and indexes them in memory.
 User: Asks — “Give me three possible plot twists for the main character without breaking the lore.”
 Agent:
- - Searches for all appearances of the character.
- - Understands their traits, past events, and unresolved threads.
- - Generates 3 possible twists consistent with your style.
+
+- Searches for all appearances of the character.
+- Understands their traits, past events, and unresolved threads.
+- Generates 3 possible twists consistent with your style.
 User: Picks one and starts writing, optionally asking the AI to “fill in” scene details.
 
 ### 4. Key Concepts for Novel AI Agents
@@ -225,463 +231,3 @@ If Ollama is not running, AI features will be unavailable. For troubleshooting, 
 6. Create the plugin API for extensibility (using Dart/Flutter).
 7. Polish the UI/UX for a smooth experience.
 8. Test thoroughly and write documentation.
-
-# Embedded Planning & Architecture Files
-
----
-
-## .guide/vision_scope/user_stories.md
-
-# User Stories
-
-List user stories that describe how different personas will interact with the app.
-
----
-
-## .guide/vision_scope/personas.md
-
-# Personas
-
-Describe the main user types for the app, their goals, and pain points.
-
----
-
-## .guide/vision_scope/out_of_scope.md
-
-# Out of Scope
-
-Document features or ideas that are explicitly not part of the current project scope.
-
----
-
-## .guide/ux_ui/wireframes.md
-
-# Wireframes
-
-Add or link to wireframes/mockups for key screens.
-
----
-
-## .guide/ux_ui/ux_focused_features.md
-
-# UX-Focused Features
-
-For the best user experience, take advantage of:
-
-- Fast full-text search to quickly find notes and characters.
-- Customizable hotkeys and shortcuts for efficient navigation.
-- Local backup and restore to protect your work (ZIP export/import).
-- Set writing goals and reminders to stay productive.
-- Use the timeline/chronology view to organize story events.
-- Map character relationships visually.
-- Drag and drop cards on the board to structure your story.
-- Preview Markdown and use split view for editing.
-- Switch between custom themes and dark mode for comfort.
-- Embed images, audio, and video directly in your notes.
-- Access version history and undo/redo changes easily.
-- Tag and filter notes for advanced organization.
-- Enter distraction-free writing mode for focus.
-- Use checklists and to-dos to track tasks.
-- Rely on auto-save and recovery to prevent data loss.
-
----
-
-## .guide/ux_ui/user_journeys.md
-
-# User Journeys
-
-Describe the main user flows and journeys through the app.
-
----
-
-## .guide/ux_ui/theming.md
-
-# Theming
-
-Describe theming and customization options for the UI.
-
----
-
-## .guide/ux_ui/accessibility.md
-
-# Accessibility
-
-Document accessibility requirements and guidelines for the app.
-
----
-
-## .guide/todo/06_milestones_timeline.md
-
-# Draft Project Milestones & Timeline
-
-Break the project into phases with clear milestones and estimated timelines. Include planning, prototyping, MVP, and full release.
-
-**Why:** Milestones keep the project on track and make progress measurable.
-
-**Acceptance Criteria:**
-
-- Milestones and phases are listed.
-- Timeline estimates are realistic.
-- Team agrees on priorities.
-
----
-
-## .guide/todo/05_agent_indexing_logic.md
-
-# Specify Agent & Indexing Logic
-
-Detail how the agent will scan, index, and analyze project files. Define how suggestions and context-aware features will work.
-
-**Why:** A robust agent design is key to delivering smart, context-aware assistance.
-
-**Acceptance Criteria:**
-
-- Indexing and scanning logic is documented.
-- Agent suggestion flow is mapped.
-- Privacy and performance considerations addressed.
-
----
-
-## .guide/todo/04_plan_ux_ui.md
-
-# Plan UX/UI Wireframes
-
-Sketch wireframes or mockups for key screens (dashboard, editor, board, agent panel). Map user journeys and accessibility considerations.
-
-**Why:** Early wireframes help clarify requirements and catch usability issues before development.
-
-**Acceptance Criteria:**
-
-- Wireframes/mockups for all major screens.
-- User journeys mapped.
-- Accessibility guidelines noted.
-
----
-
-## .guide/todo/03_design_architecture.md
-
-# Design High-Level Architecture
-
-Create an architecture diagram and describe the main components (UI, API, backend, agent, AI integration). Justify tech choices and outline data flow.
-
-**Why:** A clear architecture ensures scalability, maintainability, and easier onboarding for new contributors.
-
-**Acceptance Criteria:**
-
-- Architecture diagram is created and reviewed.
-- Tech stack and data flow are documented.
-- Risks and alternatives are considered.
-
----
-
-## .guide/todo/02_define_vision_scope.md
-
-# Define Project Vision & Scope
-
-Document the overall vision, goals, and scope of the project. Include target audience, key features, and what is out of scope.
-
-**Why:** Clear vision and scope prevent feature creep and keep the team aligned.
-
-**Acceptance Criteria:**
-
-- Vision and goals are documented and agreed upon.
-- Scope boundaries are clear.
-- Stakeholders have reviewed and approved the document.
-
----
-
-## .guide/todo/01_setup_repository.md
-
-# Set Up Project Repository
-
-Create a new git repository for the project. Initialize with a README, .gitignore, and LICENSE. Set up the main branch and push to a remote (GitHub, GitLab, etc.).
-
-**Why:** Version control is essential for collaboration, tracking changes, and maintaining code quality.
-
-**Acceptance Criteria:**
-
-- Repository exists and is accessible to the team.
-- README, .gitignore, and LICENSE are present.
-- Main branch is protected (if using a remote).
-
----
-
-## .guide/tech_stack/sqlite.md
-
-# SQLite
-
-- **Category:** Data Storage
-- **Version:** 3.x
-- **Website/Docs:** <https://www.sqlite.org/>
-- **Why Chosen:** Lightweight, fast, reliable, and widely supported for local storage.
-- **Key Features:** ACID compliance, SQL queries, file-based DB.
-- **Integration Points:** Stores notes, metadata, and relationships.
-- **Alternatives Considered:** Isar, Hive, Realm
-- **Risks/Limitations:** Not ideal for very large datasets or concurrent writes.
-- **Best Practices:** Use parameterized queries, backup regularly.
-
----
-
-## .guide/tech_stack/ollama.md
-
-# Ollama
-
-- **Category:** AI Integration
-- **Version:** Latest
-- **Website/Docs:** <https://ollama.com/>
-- **Why Chosen:** Local LLM runner, easy to use, supports multiple models.
-- **Key Features:** Runs LLMs locally, REST API, model management.
-- **Integration Points:** Backend agent orchestrator, FastAPI.
-- **Alternatives Considered:** llama.cpp, text-generation-webui, OpenAI API
-- **Risks/Limitations:** Not open source, limited to supported models.
-- **Best Practices:** Keep models updated, monitor resource usage.
-
----
-
-## .guide/tech_stack/hive.md
-
-# Hive
-
-- **Category:** Data Storage/Logic
-- **Version:** 2.x
-- **Website/Docs:** <https://docs.hivedb.dev/>
-- **Why Chosen:** Pure Dart, fast, no native dependencies, great for key-value and state management.
-- **Key Features:** NoSQL, encrypted storage, reactive API.
-- **Integration Points:** App state, settings, lightweight data.
-- **Alternatives Considered:** SQLite, Isar
-- **Risks/Limitations:** Not for complex relational data.
-- **Best Practices:** Use for config, cache, and small datasets.
-
----
-
-## .guide/tech_stack/flutter.md
-
-# Flutter
-
-- **Category:** Frontend
-- **Version:** 3.x
-- **Website/Docs:** <https://flutter.dev/>
-- **Why Chosen:** Cross-platform desktop UI, strong community, fast development.
-- **Key Features:** Hot reload, widget system, native performance.
-- **Integration Points:** UI layer, communicates with backend via API.
-- **Alternatives Considered:** Electron, Qt, Tauri
-- **Risks/Limitations:** Desktop support is newer than mobile, some plugins may lack features.
-- **Best Practices:** Use official plugins, follow Material/Flutter design guidelines.
-
----
-
-## .guide/tech_stack/file_scanner_indexer.md
-
-# Project File Scanner & Indexer
-
-- **Category:** Backend/Agent
-- **Version:** Custom
-- **Website/Docs:** N/A (custom Python module)
-- **Why Chosen:** Enables agent to scan and index all user project files for context-aware suggestions.
-- **Key Features:** File scanning, text extraction, chunking, semantic splitting.
-- **Integration Points:** FastAPI backend, vector database.
-- **Alternatives Considered:** None (custom logic required)
-- **Risks/Limitations:** Must handle many file types, performance on large projects.
-- **Best Practices:** Use efficient file IO, support common formats, log errors.
-
----
-
-## .guide/tech_stack/fastapi.md
-
-# FastAPI
-
-- **Category:** Backend/API
-- **Version:** 0.110+
-- **Website/Docs:** <https://fastapi.tiangolo.com/>
-- **Why Chosen:** Modern, async, fast, easy to use for Python APIs.
-- **Key Features:** Async support, OpenAPI docs, type hints.
-- **Integration Points:** Main backend, connects UI to agent and AI.
-- **Alternatives Considered:** Flask, Django, Node.js (Express)
-- **Risks/Limitations:** Python performance for heavy compute.
-- **Best Practices:** Use type hints, async endpoints, auto-generated docs.
-
----
-
-## .guide/tech_stack/dart.md
-
-# Dart
-
-- **Category:** Frontend
-- **Version:** 3.x
-- **Website/Docs:** <https://dart.dev/>
-- **Why Chosen:** Native language for Flutter, modern, fast, and easy to learn.
-- **Key Features:** Null safety, async/await, strong typing.
-- **Integration Points:** All Flutter UI and logic.
-- **Alternatives Considered:** JavaScript, TypeScript, C#
-- **Risks/Limitations:** Smaller ecosystem than JS/TS.
-- **Best Practices:** Use null safety, follow Dart style guide.
-
----
-
-## .guide/tech_stack/agent_orchestrator.md
-
-# Agent Orchestrator
-
-- **Category:** Backend/Agent
-- **Version:** Custom
-- **Website/Docs:** N/A (custom Python module)
-- **Why Chosen:** Manages agent tasks, context, and communication with LLMs.
-- **Key Features:** Task management, context passing, persona switching.
-- **Integration Points:** FastAPI backend, Ollama, vector DB.
-- **Alternatives Considered:** None (custom logic required)
-- **Risks/Limitations:** Complexity, must be robust to errors.
-- **Best Practices:** Modular design, clear logging, test with real user data.
-
----
-
-## .guide/quality_testing/user_feedback.md
-
-# User Feedback
-
-Explain how user feedback will be collected and used to improve the app.
-
----
-
-## .guide/quality_testing/testing_strategy.md
-
-# Testing Strategy
-
-Outline the approach for unit, integration, and user testing.
-
----
-
-## .guide/quality_testing/review_process.md
-
-# Review Process
-
-Describe the process for code and design reviews.
-
----
-
-## .guide/quality_testing/code_standards.md
-
-# Code Standards
-
-List code style and quality standards for all codebases.
-
----
-
-## .guide/project_management/timeline.md
-
-# Timeline
-
-Provide a timeline or Gantt chart for the project phases.
-
----
-
-## .guide/project_management/risks.md
-
-# Risks
-
-Identify key risks and mitigation strategies for the project.
-
----
-
-## .guide/project_management/milestones.md
-
-# Milestones
-
-List the major milestones for the project, with descriptions and target dates.
-
----
-
-## .guide/project_management/documentation_plan.md
-
-# Documentation Plan
-
-Describe how user and developer documentation will be created and maintained.
-
----
-
-## .guide/community_support/support_policy.md
-
-# Support Policy
-
-Describe how users and contributors can get help or support.
-
----
-
-## .guide/community_support/roadmap.md
-
-# Roadmap
-
-Share the long-term vision and planned features for the project.
-
----
-
-## .guide/community_support/contribution_guidelines.md
-
-# Contribution Guidelines
-
-Provide rules and best practices for contributing to the project.
-
----
-
-## .guide/architecture_design/tech_stack_justification.md
-
-# Tech Stack Justification
-
-Explain why each major technology was chosen for the project.
-
----
-
-## .guide/architecture_design/security_privacy.md
-
-# Security & Privacy
-
-Outline security and privacy considerations for the app, especially regarding local data and AI.
-
----
-
-## .guide/architecture_design/data_flow.md
-
-# Data Flow
-
-Describe how data moves through the system, from UI to backend to AI and storage.
-
----
-
-## .guide/architecture_design/architecture_diagram.md
-
-# Architecture Diagram
-
-Insert or link to the main architecture diagram for the project.
-
----
-
-## .guide/ai_agent/persona_logic.md
-
-# Persona Logic
-
-Explain how personas will be defined, managed, and used by the agent.
-
----
-
-## .guide/ai_agent/ollama_integration.md
-
-# Ollama Integration
-
-Detail how the agent and backend will interact with Ollama for AI features.
-
----
-
-## .guide/ai_agent/indexing_strategy.md
-
-# Indexing Strategy
-
-Describe how the agent will index and keep track of project files and context.
-
----
-
-## .guide/ai_agent/agent_capabilities.md
-
-# Agent Capabilities
-
-List the main capabilities and tasks the agent will support.
-
----
