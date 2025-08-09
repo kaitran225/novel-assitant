@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide Viewer (Markdown in iframe)</title>
+  <style>
+    body { margin: 0; padding: 0; }
+    iframe { width: 100vw; height: 100vh; border: none; }
+  </style>
+</head>
+<body>
+  <!-- Lightweight manual option: just show the raw Markdown file in an iframe -->
+  <iframe src="guide.md"></iframe>
+  <p style="padding:1em; font-size:0.9em; color:#666; background:#f9f9f9;">
+    This is a lightweight manual HTML viewer. To see rendered Markdown, open <code>guide.md</code> in a Markdown editor, or use a browser extension or tool that renders Markdown in iframes.<br>
+    <b>Tip:</b> For a fully rendered view, use a JS library like <a href="https://marked.js.org/" target="_blank">marked.js</a> or <a href="https://showdownjs.com/" target="_blank">showdown.js</a> to convert Markdown to HTML in the browser.
+  </p>
+</body>
+</html>

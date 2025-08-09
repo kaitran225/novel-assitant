@@ -1,4 +1,24 @@
-# Novel Writing AI Agent Architecture
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Novel Writing AI Agent Architecture - Full Guide</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; padding: 2em; }
+    h1, h2, h3, h4 { color: #222; }
+    .section { margin-bottom: 2em; border: 1px solid #ddd; background: #fff; box-shadow: 0 2px 8px #0001; padding: 2em; }
+    #md-content { max-width: 900px; margin: auto; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="section" id="md-content">
+    Loading guide...
+  </div>
+  <script>
+    // The Markdown content from guide.md (escaped for JS)
+    const md = `# Novel Writing AI Agent Architecture
 
 ## Overview
 
@@ -685,3 +705,8 @@ Describe how the agent will index and keep track of project files and context.
 List the main capabilities and tasks the agent will support.
 
 ---
+`;
+    document.getElementById('md-content').innerHTML = marked.parse(md);
+  </script>
+</body>
+</html>
