@@ -1,11 +1,13 @@
 # Enterprise Deployment Guide
 
 ## Supported Environments
+
 - Windows, macOS, Linux (desktop client)
 - On-premises, private cloud, or hybrid
 - Backend can run on Docker, Kubernetes, or bare metal
 
 ## Steps
+
 1. **Prepare Infrastructure:**
    - Provision VMs or containers for backend and agent services.
    - Set up secure networking (VPN, firewalls, HTTPS).
@@ -26,6 +28,7 @@
    - Set up CI/CD for automated builds and updates.
 
 ## Security Checklist
+
 - All secrets managed via vault (HashiCorp Vault, AWS Secrets Manager, etc.)
 - Regular vulnerability scans and patching
 - Penetration testing before production rollout

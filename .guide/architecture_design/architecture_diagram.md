@@ -3,6 +3,7 @@
 ![Enterprise Architecture Diagram](https://raw.githubusercontent.com/kaitran225/novel-assistant-assets/main/enterprise-architecture-diagram.png)
 
 > This diagram illustrates the high-level architecture for the Novel Assistant enterprise desktop app, including:
+>
 > - Flutter desktop client (Windows/macOS/Linux)
 > - FastAPI backend (Python, async, scalable)
 > - Local AI (Ollama) and agent orchestrator

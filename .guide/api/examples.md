@@ -1,11 +1,14 @@
 # API Usage Examples
 
 ## Example: Get Project List
+
 ```http
 GET /api/projects
 Authorization: Bearer <token>
 ```
+
 Response:
+
 ```json
 [
   {"id": "proj1", "name": "My Novel", "created": "2025-01-01"},
@@ -14,6 +17,7 @@ Response:
 ```
 
 ## Example: Create Note
+
 ```http
 POST /api/notes
 Authorization: Bearer <token>
@@ -23,7 +27,9 @@ Content-Type: application/json
   "content": "Once upon a time..."
 }
 ```
+
 Response:
+
 ```json
 {"id": "note123", "status": "created"}
 ```

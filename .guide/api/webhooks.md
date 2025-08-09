@@ -1,17 +1,20 @@
 # Webhooks
 
 ## Supported Events
+
 - note.created
 - note.updated
 - project.archived
 - user.invited
 
 ## Delivery
+
 - HTTPS POST to registered endpoint
 - Retries with exponential backoff
 - Signed payloads for security
 
 ## Example Payload
+
 ```json
 {
   "event": "note.created",
