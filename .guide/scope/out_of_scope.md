@@ -1,6 +1,7 @@
 # Out of Scope
 
 ## Excluded Features
+
 - Mobile-only app (mobile companion is future roadmap)
 - Cloud-only deployment (local/on-prem required for enterprise)
 - OpenAI/remote LLM integration (local AI only)
@@ -9,6 +10,7 @@
 - Non-compliant data storage or export
 
 ## Rationale
+
 - Focus on privacy, compliance, and local-first workflows
 - Enterprise customers require on-prem and local AI
 

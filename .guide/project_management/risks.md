@@ -1,6 +1,7 @@
 # Risks
 
 ## Key Risks
+
 - **AI Model Drift:** LLMs may generate inconsistent or off-brand content over time.
 - **Data Privacy:** Sensitive user data must be protected at all times.
 - **Scalability:** High user or data volume may impact performance.
@@ -9,6 +10,7 @@
 - **User Adoption:** Users may resist new workflows or tools.
 
 ## Mitigation Strategies
+
 - Regular model evaluation and fine-tuning
 - End-to-end encryption and strict access controls
 - Load testing and horizontal scaling

@@ -3,6 +3,7 @@
 This folder contains step-by-step tasks, checklists, and planning docs for the Novel Assistant enterprise app.
 
 ## Contents
+
 - `01_setup_repository.md` — Initial repo setup and configuration
 - `02_define_vision_scope.md` — Define vision, personas, and user stories
 - `03_design_architecture.md` — Architecture and tech stack planning

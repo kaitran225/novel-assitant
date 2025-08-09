@@ -1,6 +1,7 @@
 # In Scope
 
 ## Included Features
+
 - Cross-platform desktop app (Flutter)
 - Local AI agent (Ollama) and agent orchestrator
 - Markdown-based note editor and file organization
@@ -12,6 +13,7 @@
 - Accessibility and theming
 
 ## Requirements
+
 - All features must meet enterprise security and compliance standards
 - Documentation and support for all user types
 

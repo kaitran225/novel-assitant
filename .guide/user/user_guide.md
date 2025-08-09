@@ -1,6 +1,7 @@
 # User Guide
 
 ## Main Features
+
 - Markdown note editor with rich formatting
 - Folder and file organization
 - Graph and board views for planning
@@ -9,6 +10,7 @@
 - Export/import (Markdown, PDF, etc.)
 
 ## Workflows
+
 - Create and organize notes by project
 - Link notes and visualize relationships
 - Use the board for story planning

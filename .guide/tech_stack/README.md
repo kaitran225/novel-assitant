@@ -3,6 +3,7 @@
 This folder documents all major technologies, frameworks, and tools used in the Novel Assistant enterprise app.
 
 ## Contents
+
 - `flutter.md` — Flutter for cross-platform desktop UI
 - `dart.md` — Dart language for frontend logic
 - `fastapi.md` — FastAPI for backend APIs
