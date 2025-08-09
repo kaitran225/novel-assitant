@@ -3,6 +3,7 @@
 This folder contains resources, best practices, and onboarding information for developers working on the Novel Assistant enterprise app.
 
 ## Contents
+
 - `onboarding.md` — Steps for new developers to get started
 - `dev_env.md` — Setting up the development environment
 - `coding_standards.md` — Code style, linting, and formatting

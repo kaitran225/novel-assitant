@@ -3,6 +3,7 @@
 This folder documents the backend services, deployment, and operational best practices for the Novel Assistant enterprise app.
 
 ## Contents
+
 - `service_overview.md` — Overview of backend services (FastAPI, agent orchestrator, file indexer)
 - `deployment.md` — Backend deployment and scaling
 - `monitoring.md` — Monitoring, logging, and alerting

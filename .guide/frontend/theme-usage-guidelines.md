@@ -1,6 +1,7 @@
 # Theme Usage Guidelines
 
 ## Dark Theme (Default)
+
 - **Text Colors:**
   - Primary: #FFFFFF
   - Secondary: #F8F5FF
@@ -16,6 +17,7 @@
   - Shadows: purple-tinted, soft to strong
 
 ## Light Theme
+
 - **Text Colors:**
   - Primary: #1a1a1a
   - Secondary: #2d2d2d
@@ -31,10 +33,12 @@
   - Shadows: lighter purple-tinted
 
 ## Implementation
+
 - Use `[data-theme="dark"]` and `[data-theme="light"]` selectors in CSS.
 - Switch themes by toggling the `data-theme` attribute on the root element.
 - All color variables should be referenced via `var(--color-name)`.
 
 ## Accessibility
+
 - Ensure text/background contrast meets WCAG AA.
 - Test both themes for readability and clarity.
