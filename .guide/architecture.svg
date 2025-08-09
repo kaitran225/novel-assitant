@@ -1,0 +1,27 @@
+<svg width="500" height="320" xmlns="http://www.w3.org/2000/svg">
+  <rect x="30" y="40" width="120" height="40" fill="#4F8EF7" stroke="#333" rx="8"/>
+  <text x="90" y="65" font-size="14" text-anchor="middle" fill="#fff">Flutter UI</text>
+
+  <rect x="200" y="40" width="160" height="60" fill="#6CC24A" stroke="#333" rx="8"/>
+  <text x="280" y="70" font-size="14" text-anchor="middle" fill="#fff">Local API Server</text>
+  <text x="280" y="88" font-size="12" text-anchor="middle" fill="#fff">(FastAPI)</text>
+
+  <rect x="200" y="140" width="120" height="40" fill="#F7B32B" stroke="#333" rx="8"/>
+  <text x="260" y="165" font-size="13" text-anchor="middle" fill="#fff">SQLite / Hive</text>
+  <text x="260" y="180" font-size="11" text-anchor="middle" fill="#fff">File System</text>
+
+  <rect x="400" y="40" width="80" height="60" fill="#E94F37" stroke="#333" rx="8"/>
+  <text x="440" y="70" font-size="13" text-anchor="middle" fill="#fff">Ollama</text>
+  <text x="440" y="88" font-size="11" text-anchor="middle" fill="#fff">(AI)</text>
+
+  <!-- Arrows -->
+  <line x1="150" y1="60" x2="200" y2="70" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="360" y1="70" x2="400" y2="70" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="280" y1="100" x2="260" y2="140" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 L2,5 z" fill="#333" />
+    </marker>
+  </defs>
+</svg>
