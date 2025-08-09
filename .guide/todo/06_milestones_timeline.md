@@ -5,6 +5,7 @@ Break the project into phases with clear milestones and estimated timelines. Inc
 **Why:** Milestones keep the project on track and make progress measurable.
 
 **Acceptance Criteria:**
+
 - Milestones and phases are listed.
 - Timeline estimates are realistic.
 - Team agrees on priorities.
