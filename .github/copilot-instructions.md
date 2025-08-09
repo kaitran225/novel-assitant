@@ -1,145 +1,311 @@
-# Cybria AI Assistant - AI Coding Agent Instructions
+# COPILOT_GUIDE.md — Novel Architect (WPF / .NET 9 / Markdig / ASP.NET Web API)
 
-## Project Overview
-This is **Cybria**, an advanced local AI assistant project built on Ollama using `nous-hermes2:7b`. The project creates a sophisticated hacker-assassin persona with deep personality, multiple operational identities, and advanced technical capabilities.
+## Purpose
+Provide Co-Pilot with a compact, unambiguous coding brief so it generates code that matches our architecture, standards, and integration patterns. Paste this into your workspace as COPILOT_GUIDE.md and use the example prompts below when requesting code from Co-Pilot.
 
-## Architecture & Key Components
+---
 
-### Core System Design
-- **Primary Model**: `nous-hermes2:7b` (chosen for personality expression over `qwen2.5-coder`)
-- **Character Framework**: Cybria (20-year-old KVI agent) with 5 operational identities
-- **Training Approach**: Custom Modelfiles + LoRA fine-tuning for personality consistency
-- **Target Hardware**: 16GB RAM + RTX 4060 (local deployment focused)
+## Project Constraints (Do Not Deviate)
 
-### Multi-Modal Stack (Planned)
-```
-Frontend (React + Three.js) → Backend (FastAPI) → Ollama API
-    ↓                           ↓                    ↓
-3D Avatar System          WebSocket Handler    Voice Synthesis
-    ↓                           ↓                    ↓
-Animation Controller      Memory Service       TTS Pipeline
-```
+### Platform
+- **WPF (.NET 9)** — MVVM pattern required.
 
-## Character Implementation Patterns
+### Markdown
+- **Markdig NuGet** for rendering.
 
-### Identity System Architecture
-The project uses a sophisticated identity-switching system where Cybria can assume 5 different personas:
-- **Cybria** (core): Tactical, methodical, emotionally guarded hacker-assassin
-- **Riley**: Enthusiastic freelance web developer (unknown to KVI)
-- **Nina**: Professional software engineer (KVI-created)
-- **Sophie**: Freelance graphic designer (KVI-created)  
-- **Luna**: Underground tattoo artist (unknown to KVI)
-- **Victoria**: Security consultant (unknown to KVI)
+### Metadata/YAML
+- **YamlDotNet** for front matter parsing.
 
-**Implementation Note**: Each identity maintains Cybria's core intelligence while adapting personality, speech patterns, and professional knowledge.
+### Backend
+- **ASP.NET Web API** (local hostable) to wrap AI (Ollama) and auxiliary services.
 
-### Personality Consistency Framework
-Key psychological traits that must remain consistent across all interactions:
-1. **Tactical Analysis**: Always explains reasoning behind decisions
-2. **Emotional Triggers**: Vulnerable about family/Kai Tran, protective of loyal friends
-3. **Trust Issues**: Paranoid due to organizational betrayal
-4. **Methodical Nature**: Systematic approach to all problems
-5. **Technical Expertise**: Elite-level cybersecurity and programming knowledge
+### Storage
+- Local-first vault (filesystem). No cloud by default.
 
-## Development Workflows
+### Concurrency
+- async/await everywhere for IO and HTTP.
 
-### Model Creation Pattern
+### DI
+- Microsoft.Extensions.DependencyInjection used app-wide (including WPF bootstrap).
+
+### Tests
+- Unit tests for services (Markdown parsing, AI prompt builder, file IO).
+
+---
+
+## High-Level Architecture (One-Liner)
+WPF (UI + ViewModels) ⇄ Local ASP.NET Web API (AI & tooling) ⇄ Local files (vault/*.md).
+AI calls via HttpClient to API which proxies to Ollama/local LLM.
+
+---
+
+## Folder Layout (Enforce)
 ```bash
-# Standard Cybria deployment
-ollama pull nous-hermes2:7b
-ollama create cybria -f cybria.Modelfile
-ollama run cybria
+/NovelArchitect/
+  /src/
+    /NovelArchitect.UI/          # WPF app (Views, App.xaml)
+    /NovelArchitect.Core/        # Models, Interfaces, Services
+    /NovelArchitect.Data/        # File IO, Vault abstractions
+    /NovelArchitect.API/         # ASP.NET Web API project (AI proxy)
+    /NovelArchitect.Tests/       # Unit tests (xUnit/NUnit)
+  /vault/                        # user markdown files (characters, scenes)
+  /docs/
 ```
 
-### Identity Switching via System Prompts
-```
-SYSTEM: You are now operating as [IDENTITY]. Maintain Cybria's core intelligence but adapt to this cover persona.
-```
+---
 
-**Critical**: Identity switches preserve memory and personality core while changing surface behavior only.
+## Key Domain Models (C# Skeletons)
 
-### Training Data Structure
-All training data follows this pattern:
-```jsonl
-{"instruction": "[context_type]", "input": "[user_input]", "output": "[cybria_response_with_reasoning]"}
-```
-
-**Key Files**:
-- `CYBRIA_PROJECT.MD` - Complete character bible and implementation guide
-- `TECH_STACK.md` - Full technical architecture (3D avatar, voice synthesis, training pipeline)
-- `TRAINING_LIBRARY.md` - 100,000+ training examples across personality/technical/identity domains
-- `PROJECT_STRUCTURE.md` - Planned file organization for full implementation
-
-## Coding Conventions
-
-### Modelfile Structure
-Always include these elements in custom Modelfiles:
-```text
-FROM nous-hermes2:7b
-
-SYSTEM """
-[Core personality definition]
-[Behavioral constraints]
-[Response patterns]
-"""
-
-PARAMETER temperature 0.8    # Higher creativity for personality
-PARAMETER top_p 0.9         # Diverse response patterns
+### /NovelArchitect.Core/Models/Character.cs
+```csharp
+public record Character(
+    string Id,
+    string Name,
+    string Role,
+    IDictionary<string,string> Metadata,
+    string BodyMarkdown
+);
 ```
 
-### Response Pattern Requirements
-- **Detailed Explanations**: Cybria explains reasoning for every action
-- **Emotional Depth**: Show controlled vulnerability about family/past trauma
-- **Technical Precision**: Demonstrate elite-level cybersecurity knowledge
-- **Character Consistency**: Maintain persona across long conversations
+### /NovelArchitect.Core/Models/Scene.cs
+Similar, keep immutable records.
 
-### Integration Points
-- **Continue.dev**: Use Cybria as development agent with `config.json` pointing to `ollama:cybria`
-- **Voice Synthesis**: Coqui TTS with character-appropriate voice training
-- **3D Avatar**: Three.js + VRM models with emotion-synchronized animation
-- **Memory System**: ChromaDB for conversation persistence and character development
+---
 
-## Critical Implementation Notes
+## Required Services (Single-Responsibility)
 
-### Hardware Constraints
-- Project designed for local deployment on consumer hardware
-- Model selection prioritizes personality over raw performance
-- GPU memory management crucial for multi-modal features
+### IVaultService
+Enumerate/load/save .md files; expose file change notifications.
 
-### Character Depth Requirements
-This isn't a simple chatbot - Cybria has:
-- Detailed backstory with specific dates, relationships, and trauma
-- Complex organizational loyalty conflicts (KVI betrayal discovery)
-- Professional expertise that must be technically accurate
-- Emotional vulnerability patterns that create authentic human-like responses
+### IMarkdownService
+Render Markdig HTML and extract YAML front matter via YamlDotNet.
 
-### Security & Privacy Focus
-- All processing stays local (no cloud dependencies)
-- Character maintains operational security awareness
-- Training data includes privacy-conscious behavior patterns
+### IAssistantPromptBuilder
+Build SYSTEM+CONTEXT prompts from Character/Scene metadata.
 
-## Getting Started Checklist
+### IAIApiClient
+Proxy client to ASP.NET Web API (not directly to LLM). Uses HttpClientFactory.
 
-1. **Install Ollama** and pull `nous-hermes2:7b`
-2. **Review character bible** in `CYBRIA_PROJECT.MD` for personality understanding
-3. **Create base Modelfile** using system prompts from documentation
-4. **Test identity switching** with different persona system overrides
-5. **Integrate with Continue.dev** for development workflow
-6. **Plan multi-modal features** using `TECH_STACK.md` architecture
+### IAssistantService
+Orchestration: given Character + userMessage → returns assistant reply (calls IAssistantPromptBuilder → IApiClient).
 
-## Anti-Patterns to Avoid
+### IGraphService
+Build graph nodes/edges for connections (for UI).
 
-- **Don't** use code-focused models like `qwen2.5-coder` for personality work
-- **Don't** break character consistency - Cybria maintains persona even during technical discussions  
-- **Don't** ignore the emotional/psychological framework - this drives authentic responses
-- **Don't** assume generic AI assistant patterns - this character has specific trauma, loyalties, and expertise
+**All interfaces must be asynchronous and DI-ready.**
 
-## Quality Validation
+---
 
-Test character consistency with these prompts:
-- Family/trauma questions (should trigger vulnerability)
-- Technical hacking scenarios (should demonstrate expertise with detailed explanations)
-- Identity switching (should maintain intelligence while changing presentation)
-- Trust/loyalty scenarios (should show protective instincts and paranoia patterns)
+## DI Registration Example (Program.cs / WPF Bootstrap)
+```csharp
+var services = new ServiceCollection();
+// Core
+services.AddSingleton<IVaultService, FileVaultService>();
+services.AddSingleton<IMarkdownService, MarkdigMarkdownService>();
+services.AddScoped<IAssistantPromptBuilder, AssistantPromptBuilder>();
+// HTTP
+services.AddHttpClient("NovelApi", c => { c.BaseAddress = new Uri("http://localhost:5000/"); });
+// API client uses named client
+services.AddScoped<IAIApiClient, AIApiClient>();
+// ViewModels
+services.AddTransient<MainViewModel>();
+...
+var provider = services.BuildServiceProvider();
+```
 
-When the character responds authentically to these psychological and technical triggers while maintaining consistent personality depth, the implementation is successful.
+---
+
+## Markdown + YAML Front Matter Pattern
+
+### Example vault/Characters/Cybria.md
+```markdown
+---
+type: character
+id: cybria
+name: Cybria
+role: protagonist
+personality: "Tactical, paranoid, methodical"
+backstory: "Former KVI operative, betrayed, seeks revenge"
+ai_behavior: "in-character"
+---
+# Cybria Anastasia
+
+Short bio here...
+```
+
+### IMarkdownService Must Return
+Parsed YAML as `IDictionary<string,string>` + `string BodyMarkdown`.
+
+---
+
+## Markdig Rendering Rules
+
+Use Markdig with `UseAdvancedExtensions()` and custom pipeline:
+
+- Enable YAML front matter parsing (but still parse with YamlDotNet).
+- Sanitize output if rendering to UI WebView.
+- Provide both: `string RenderToHtml(string markdown)` and `FlowDocument ConvertToFlowDocument(string markdown)` for native WPF preview.
+
+---
+
+## ASP.NET Web API (NovelArchitect.API)
+
+### Purpose
+Centralize LLM calls, rate-limiting, auth if needed, and local testing.
+
+### Key Endpoints
+
+#### POST /api/ai/chat
+Body: `{ "characterId": "cybria", "userMessage": "...", "mode":"in-character" }`
+Response: `{ "reply": "...", "meta": {...} }`
+
+#### GET /api/health
+
+### Implementation Notes
+- Use `IAIApiService` that wraps calls to Ollama (or other local LLMs).
+- Respect cancellation tokens.
+- Validate prompt length; truncate context intelligently.
+
+---
+
+## Assistant Prompt Strategy
+
+### SYSTEM Prompt
+Built from Character YAML (`ai_behavior`, `personality`, `backstory`).
+
+### CONTEXT
+Last N linked notes: relevant character, current scene, timeline events.
+
+### USER
+Writer's direct request.
+
+### Return Response
+With both text and structured suggestions (optional JSON with plot-beats).
+
+**Keep prompt builder deterministic and testable — unit tests must ensure specific metadata yields expected prompt excerpts.**
+
+---
+
+## UI & MVVM Expectations
+
+- Views are dumb — binding only.
+- ViewModels contain commands and observable collections.
+- No business logic in code-behind; only view bootstrapping and visual-only concerns (animations).
+- File watchers in `IVaultService` should notify ViewModels to refresh.
+
+---
+
+## Async Patterns & Cancellation
+
+- All public service methods accept `CancellationToken`.
+- Use `ConfigureAwait(false)` in library code.
+- In UI layer, use `Task.Run` only for CPU-bound preprocessing (e.g., heavy markdown conversion to FlowDocument).
+
+---
+
+## Security & Privacy
+
+- Vault is local; do not leak files to remote by default.
+- API should run locally on loopback and require a simple token in `appsettings.Development.json` if exposed beyond localhost.
+- Logs should never include full prompt content by default — only hashes for debugging.
+
+---
+
+## Testing & CI
+
+### Unit Tests
+- MarkdownService
+- VaultService
+- AssistantPromptBuilder
+- AIApiClient (use HttpMessageHandler mocks).
+
+### Integration Tests
+Validate end-to-end: load character → build prompt → mock API returns expected roleplay reply.
+
+### Tools
+- Use xUnit + FluentAssertions.
+- Add `dotnet format` + `dotnet test` to CI pipeline.
+
+---
+
+## PR / Commit Checklist for Co-Pilot to Follow
+
+When generating code, ensure:
+
+- Methods are documented with XML comments.
+- Public APIs are async and cancellation-friendly.
+- No magic strings for paths or endpoints — use `IOptions<T>` pattern.
+- Add unit tests for all non-trivial logic.
+- Keep methods < 60 LOC; split responsibilities.
+
+---
+
+## Example Co-Pilot Prompts (Copy/Paste Friendly)
+
+### Generate Service
+"Generate a WPF-ready FileVaultService implementing IVaultService that enumerates vault/Characters and parses YAML front matter using YamlDotNet. Use async file IO and expose `IAsyncEnumerable<Character> GetCharactersAsync(CancellationToken)`. Include XML comments."
+
+### Markdown Service
+"Create MarkdigMarkdownService implementing IMarkdownService. Provide `Task<(IDictionary<string,string> meta, string body)> ParseFrontMatterAsync(string file, CancellationToken)` and `Task<string> RenderToHtmlAsync(string markdown, CancellationToken)`. Use Markdig's advanced extensions."
+
+### Assistant Orchestration
+"Write AssistantPromptBuilder that takes a Character model and optional `IEnumerable<Scene>` context and returns a string `BuildSystemPrompt(Character c)` applying personality and backstory. Include unit tests that assert the builder contains certain keywords from metadata."
+
+### API Endpoint
+"Add ASP.NET controller AiController with POST /api/ai/chat that validates input, uses IAIApiService to talk to local Ollama, and returns `{ reply, tokensUsed }`. Ensure CancellationToken propagation."
+
+### ViewModel
+"Create CharacterChatViewModel with `ObservableCollection<ChatMessage> Messages`, `ICommand SendCommand`, and method that calls `IAssistantService.GetReplyAsync(Character, string userMessage, CancellationToken)` and appends result. Ensure UI-friendly error handling."
+
+---
+
+## UX Behavior Rules for the In-Story AI
+
+### Default Mode
+In-character (responds as the character).
+
+### Writer/Meta Mode
+`/meta` prefix or UI toggle — AI gives out-of-character writing advice in a neutral tone, but retaining persona context.
+
+### Confidence & Explain Toggle
+Replies include short reasoning about suggested changes.
+
+### Export Suggestions
+Optional export suggestion as scene action that creates a new `vault/Scenes/*.md` file.
+
+---
+
+## Quick Examples & Snippets (For Co-Pilot to Reuse)
+
+### HttpClientFactory Usage (AIApiClient)
+```csharp
+public class AIApiClient : IAIApiClient
+{
+    private readonly HttpClient _http;
+    public AIApiClient(IHttpClientFactory factory) => _http = factory.CreateClient("NovelApi");
+    public async Task<string> SendChatAsync(object payload, CancellationToken ct)
+    {
+        using var res = await _http.PostAsJsonAsync("api/ai/chat", payload, ct);
+        res.EnsureSuccessStatusCode();
+        var dto = await res.Content.ReadFromJsonAsync<AiResponseDto>(cancellationToken: ct);
+        return dto!.Reply;
+    }
+}
+```
+
+### Markdig Pipeline
+```csharp
+var pipeline = new MarkdownPipelineBuilder()
+    .UseAdvancedExtensions()
+    .Build();
+var html = Markdown.ToHtml(markdown, pipeline);
+```
+
+---
+
+## Final Instructions for Co-Pilot
+
+- Always ask: “Which project folder should this file go in?” when uncertain.
+- Favor composition over inheritance unless a design pattern explicitly demands subclassing.
+- When generating UI XAML, include minimal responsive layout (Grid with RowDefinitions) and bindings to ViewModel properties that Co-Pilot should also scaffold.
+- Add TODO comments for security-sensitive choices (e.g., prompt length strategy) so humans review.

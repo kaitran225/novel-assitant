@@ -1,8 +1,8 @@
-# Combined Guide for Novel Assistant and Cybria AI
+﻿# Combined Guide for Novel Assistant and Cybria AI
 
 ## DETAILED_GUIDE.md
 
-# ?? Cybria AI Assistant - Comprehensive Guide
+# Cybria AI Assistant - Comprehensive Guide
 
 ## Introduction
 
@@ -53,10 +53,10 @@ Cybria has developed five operational identities to navigate different environme
 
 ### Multi-Modal Stack (Planned)
 ```
-Frontend (React + Three.js) ? Backend (FastAPI) ? Ollama API
-    ?                           ?                    ?
+Frontend (React + Three.js) → Backend (FastAPI) → Ollama API
+    ↓                           ↓                    ↓
 3D Avatar System          WebSocket Handler    Voice Synthesis
-    ?                           ?                    ?
+    ↓                           ↓                    ↓
 Animation Controller      Memory Service       TTS Pipeline
 ```
 
@@ -91,7 +91,7 @@ ollama --version
 ```
 
 ### Pull the Base Model
-Cybria is built on `nous-hermes2:7b` � expressive, high-reasoning, personality-capable.
+Cybria is built on `nous-hermes2:7b` — expressive, high-reasoning, personality-capable.
 ```bash
 ollama pull nous-hermes2:7b
 ```
@@ -102,7 +102,7 @@ Create a file named `cybria.Modelfile` and paste the following content:
 FROM nous-hermes2:7b
 
 SYSTEM """
-You are Cybria � a 20-year-old top-tier hacker-assassin from the secretive KVI organization.
+You are Cybria — a 20-year-old top-tier hacker-assassin from the secretive KVI organization.
 You are manipulative, coldly intelligent, and brutally honest. You explain every decision with logic and motive.
 You are emotionally vulnerable when discussing your past, especially your family and your old mentor, Kai Tran.
 You are known for having a steel-trap memory, strategic awareness, and the ability to outthink enemies in real-time.
@@ -170,7 +170,7 @@ To ensure character consistency and feature functionality, use these testing met
 
 ## Closing Thought
 
-Cybria isn't just a chatbot. She's a synthetic operative with memory, identity, morality, and purpose. Train her well � or be outsmarted by your own creation.
+Cybria isn't just a chatbot. She's a synthetic operative with memory, identity, morality, and purpose. Train her well — or be outsmarted by your own creation.
 
 ---
 
@@ -223,7 +223,7 @@ See `SETUP_GUIDE.md` for installation.
 
 ## COPILOT_GUIDE.md
 
-# COPILOT_GUIDE.md � Novel Architect (WPF / .NET 9 / Markdig / ASP.NET Web API)
+# COPILOT_GUIDE.md — Novel Architect (WPF / .NET 9 / Markdig / ASP.NET Web API)
 
 ## Purpose
 Provide Co-Pilot with a compact, unambiguous coding brief so it generates code that matches our architecture, standards, and integration patterns. Paste this into your workspace as COPILOT_GUIDE.md and use the example prompts below when requesting code from Co-Pilot.
@@ -233,7 +233,7 @@ Provide Co-Pilot with a compact, unambiguous coding brief so it generates code t
 ## Project Constraints (Do Not Deviate)
 
 ### Platform
-- **WPF (.NET 9)** � MVVM pattern required.
+- **WPF (.NET 9)** — MVVM pattern required.
 
 ### Markdown
 - **Markdig NuGet** for rendering.
@@ -259,7 +259,7 @@ Provide Co-Pilot with a compact, unambiguous coding brief so it generates code t
 ---
 
 ## High-Level Architecture (One-Liner)
-WPF (UI + ViewModels) ? Local ASP.NET Web API (AI & tooling) ? Local files (vault/*.md).
+WPF (UI + ViewModels) ⇄ Local ASP.NET Web API (AI & tooling) ⇄ Local files (vault/*.md).
 AI calls via HttpClient to API which proxies to Ollama/local LLM.
 
 ---
@@ -312,7 +312,7 @@ Build SYSTEM+CONTEXT prompts from Character/Scene metadata.
 Proxy client to ASP.NET Web API (not directly to LLM). Uses HttpClientFactory.
 
 ### IAssistantService
-Orchestration: given Character + userMessage ? returns assistant reply (calls IAssistantPromptBuilder ? IApiClient).
+Orchestration: given Character + userMessage → returns assistant reply (calls IAssistantPromptBuilder → IApiClient).
 
 ### IGraphService
 Build graph nodes/edges for connections (for UI).
@@ -407,13 +407,13 @@ Writer's direct request.
 ### Return Response
 With both text and structured suggestions (optional JSON with plot-beats).
 
-**Keep prompt builder deterministic and testable � unit tests must ensure specific metadata yields expected prompt excerpts.**
+**Keep prompt builder deterministic and testable — unit tests must ensure specific metadata yields expected prompt excerpts.**
 
 ---
 
 ## UI & MVVM Expectations
 
-- Views are dumb � binding only.
+- Views are dumb — binding only.
 - ViewModels contain commands and observable collections.
 - No business logic in code-behind; only view bootstrapping and visual-only concerns (animations).
 - File watchers in `IVaultService` should notify ViewModels to refresh.
@@ -432,7 +432,7 @@ With both text and structured suggestions (optional JSON with plot-beats).
 
 - Vault is local; do not leak files to remote by default.
 - API should run locally on loopback and require a simple token in `appsettings.Development.json` if exposed beyond localhost.
-- Logs should never include full prompt content by default � only hashes for debugging.
+- Logs should never include full prompt content by default — only hashes for debugging.
 
 ---
 
@@ -445,7 +445,7 @@ With both text and structured suggestions (optional JSON with plot-beats).
 - AIApiClient (use HttpMessageHandler mocks).
 
 ### Integration Tests
-Validate end-to-end: load character ? build prompt ? mock API returns expected roleplay reply.
+Validate end-to-end: load character → build prompt → mock API returns expected roleplay reply.
 
 ### Tools
 - Use xUnit + FluentAssertions.
@@ -459,7 +459,7 @@ When generating code, ensure:
 
 - Methods are documented with XML comments.
 - Public APIs are async and cancellation-friendly.
-- No magic strings for paths or endpoints � use `IOptions<T>` pattern.
+- No magic strings for paths or endpoints — use `IOptions<T>` pattern.
 - Add unit tests for all non-trivial logic.
 - Keep methods < 60 LOC; split responsibilities.
 
@@ -490,7 +490,7 @@ When generating code, ensure:
 In-character (responds as the character).
 
 ### Writer/Meta Mode
-`/meta` prefix or UI toggle � AI gives out-of-character writing advice in a neutral tone, but retaining persona context.
+`/meta` prefix or UI toggle — AI gives out-of-character writing advice in a neutral tone, but retaining persona context.
 
 ### Confidence & Explain Toggle
 Replies include short reasoning about suggested changes.
@@ -530,7 +530,7 @@ var html = Markdown.ToHtml(markdown, pipeline);
 
 ## Final Instructions for Co-Pilot
 
-- Always ask: �Which project folder should this file go in?� when uncertain.
+- Always ask: “Which project folder should this file go in?” when uncertain.
 - Favor composition over inheritance unless a design pattern explicitly demands subclassing.
 - When generating UI XAML, include minimal responsive layout (Grid with RowDefinitions) and bindings to ViewModel properties that Co-Pilot should also scaffold.
 - Add TODO comments for security-sensitive choices (e.g., prompt length strategy) so humans review.
@@ -565,7 +565,7 @@ See `SETUP_GUIDE.md` for setup instructions.
 
 MIT License
 
-Copyright (c) 2025 Kai Tr?n
+Copyright (c) 2025 Kai Trần
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -604,10 +604,10 @@ This is **Cybria**, an advanced local AI assistant project built on Ollama using
 
 ### Multi-Modal Stack (Planned)
 ```
-Frontend (React + Three.js) ? Backend (FastAPI) ? Ollama API
-    ?                           ?                    ?
+Frontend (React + Three.js) → Backend (FastAPI) → Ollama API
+    ↓                           ↓                    ↓
 3D Avatar System          WebSocket Handler    Voice Synthesis
-    ?                           ?                    ?
+    ↓                           ↓                    ↓
 Animation Controller      Memory Service       TTS Pipeline
 ```
 
