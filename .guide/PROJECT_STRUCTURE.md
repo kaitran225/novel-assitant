@@ -240,7 +240,7 @@ voice-synthesis/
 │   │   ├── 📁 base-model/
 │   │   │   ├── 📄 cybria_base.glb
 │   │   │   ├── 📄 cybria_base.vrm
-│   │   │   └── 📄 cybria_textures/
+│   │   │   └── 📁 cybria_textures/
 │   │   ├── 📁 expressions/
 │   │   │   ├── 📄 neutral.json
 │   │   │   ├── 📄 happy.json
@@ -296,61 +296,7 @@ voice-synthesis/
 └── 📄 README.md
 ```
 
-## 📚 Training Data Structure (`training-data/`)
-
-```
-training-data/
-├── 📁 personality/
-│   ├── 📄 core_traits.jsonl       # 5000+ personality examples
-│   ├── 📄 emotional_responses.jsonl # 3000+ emotional triggers
-│   ├── 📄 tactical_thinking.jsonl # 2000+ strategic examples
-│   └── 📄 vulnerability_moments.jsonl # 1000+ vulnerable responses
-├── 📁 identities/
-│   ├── 📄 riley_developer.jsonl   # Web developer persona
-│   ├── 📄 nina_engineer.jsonl     # Software engineer persona
-│   ├── 📄 luna_artist.jsonl       # Tattoo artist persona
-│   ├── 📄 victoria_consultant.jsonl # Security consultant persona
-│   └── 📄 sophie_designer.jsonl   # Graphic designer persona
-├── 📁 technical/
-│   ├── 📄 hacking_scenarios.jsonl # 4000+ cybersecurity examples
-│   ├── 📄 programming_help.jsonl  # 3000+ coding assistance
-│   ├── 📄 system_analysis.jsonl   # 2000+ technical analysis
-│   └── 📄 security_expertise.jsonl # 2500+ security knowledge
-├── 📁 dialogue/
-│   ├── 📄 casual_conversation.jsonl # 10000+ natural dialogue
-│   ├── 📄 mission_briefings.jsonl # 1500+ task-oriented dialogue
-│   ├── 📄 relationship_building.jsonl # 2000+ trust-building
-│   └── 📄 conflict_resolution.jsonl # 1000+ difficult conversations
-├── 📁 backstory/
-│   ├── 📄 childhood_memories.jsonl # Early life experiences
-│   ├── 📄 kai_relationship.jsonl  # Kai Tran interactions
-│   ├── 📄 kvi_organization.jsonl  # Organization details
-│   └── 📄 betrayal_discovery.jsonl # Recent revelations
-├── 📁 voice-samples/
-│   ├── 📁 cybria-base/
-│   │   ├── 📄 neutral_tone/       # 500+ neutral samples
-│   │   ├── 📄 emotional_range/    # 300+ emotional samples
-│   │   └── 📄 technical_speech/   # 200+ technical explanations
-│   ├── 📁 identity-voices/
-│   │   ├── 📄 riley_samples/      # Casual, enthusiastic
-│   │   ├── 📄 nina_samples/       # Professional, confident
-│   │   ├── 📄 luna_samples/       # Edgy, artistic
-│   │   ├── 📄 victoria_samples/   # Authoritative, expert
-│   │   └── 📄 sophie_samples/     # Creative, friendly
-│   └── 📁 emotional-variants/
-│       ├── 📄 vulnerable/         # Soft, hurt voice
-│       ├── 📄 calculating/        # Cold, analytical
-│       ├── 📄 protective/         # Fierce, defensive
-│       └── 📄 nostalgic/          # Wistful, remembering
-├── 📁 evaluation/
-│   ├── 📄 personality_tests.jsonl # Personality consistency tests
-│   ├── 📄 knowledge_tests.jsonl   # Technical knowledge tests
-│   ├── 📄 identity_tests.jsonl    # Identity switching tests
-│   └── 📄 emotional_tests.jsonl   # Emotional response tests
-└── 📄 README.md
-```
-
-## 📖 Documentation Structure (`docs/`)
+## 📚 Documentation Structure (`docs/`)
 
 ```
 docs/
@@ -387,7 +333,7 @@ docs/
 └── 📄 README.md
 ```
 
-## 🔧 Scripts Structure (`scripts/`)
+## 🛠️ Scripts Structure (`scripts/`)
 
 ```
 scripts/
